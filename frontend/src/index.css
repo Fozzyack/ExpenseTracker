@@ -1,0 +1,18 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+section {
+    @apply my-4
+}
+
+input {
+    @apply p-2  border-2 border-gray-200
+}
+
+
+.flex-col-center {
+    @apply flex flex-col items-center justify-center
+}
+
