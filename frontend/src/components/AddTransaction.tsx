@@ -11,8 +11,8 @@ const AddTransaction = () => {
         setAmount(parseInt(e.target.value))
     }
 
-    const addTransaction = (e: React.MouseEvent<HTMLButtonElement>) => {
-        e.preventDefault();
+    const addTransaction = (e : React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault()
         fetch("http://localhost:8080/add", {
 
             method: "POST",
@@ -22,15 +22,19 @@ const AddTransaction = () => {
             body: JSON.stringify({ name: name, amount: amount})
 
         }).then(res => res.json())
-        .then(data => console.log(data))
-        .catch(error => console.error(error))
+        .then(data => {console.log(data)
+            window.location.reload();
+        })
+        .catch(error => {
+            console.error(error)
+        })
 
     }
 
 
 	return (
 		<section>
-			<div className="flex flex-col divide-y-2 divide-gray-200">
+			<form className="flex flex-col divide-y-2 divide-gray-200" onSubmit={(e) => addTransaction(e)}>
 				<h2 className="text-2xl">Add new Transaction</h2>
 				<div className="flex flex-col gap-4">
 					<span> Reason: </span>
@@ -44,10 +48,10 @@ const AddTransaction = () => {
 					</div>
 					<input type="number" placeholder="Insert Amount Here" onChange={e => changeAmount(e)}/>
 				</div>
-                <button className="w-full flex-col-center bg-indigo-400 my-2" onClick={(e) => addTransaction(e)}>
+                <button type="submit" className="w-full flex-col-center bg-indigo-400 my-2 hover:-translate-y-2 hover:bg-indigo-500 hover:shadow-2xl transition-all ease-in-out duration-300">
                     <span className="text-white p-2 "> Add Transaction </span>
                 </button>
-			</div>
+			</form>
 		</section>
 	);
 };

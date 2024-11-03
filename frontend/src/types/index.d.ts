@@ -4,12 +4,17 @@ declare interface IncomeExpense {
     expense: number;
 }
 
+declare interface Payment {
+    pay : number;
+}
+
 declare interface Balance {
     balance : number;
 }
 
 declare interface PaymentObject{
-    name: string
-    amount: number
+    id: number;
+    name: string;
+    amount: number;
 }
 
